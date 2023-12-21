@@ -5,7 +5,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #2292CB;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -15,11 +15,13 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: white;
   text-decoration: inherit;
+  transition: opacity .5s;
 }
 a:hover {
-  color: #535bf2;
+  color: white;
+  opacity: .5;
 }
 
 body {
@@ -33,6 +35,7 @@ body {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  font-family: Oswald;
 }
 
 button {
@@ -65,4 +68,9 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+.header-img {
+  width: 10rem;
+  height: 10rem;
 }

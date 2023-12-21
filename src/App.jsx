@@ -1,9 +1,18 @@
 import "./App.css";
 
-function App() {
-  return <div className="App"></div>;
-   
 
+function App() {
+  return (
+  <>
+  <header>
+    <a href="#"> <h1>Pizza Napoli</h1></a>
+    <img className="header-img" src="pizza.png"></img>
+  </header>
+  <main>
+
+  </main>
+  </>
+  )
 }
 
 
