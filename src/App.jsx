@@ -1,6 +1,7 @@
 import "./App.css";
 import React from 'react';
 import { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 
 function App() {
@@ -21,7 +22,6 @@ function App() {
     name : 'Quattro Formaggi',
     color : 'bianca'
   }
-
   ];
 
   function whenBaseButtonIsClicked () {
@@ -45,7 +45,9 @@ function App() {
     <p> Affichez les pizzas</p>
     <button onClick={whenBaseButtonIsClicked}>{pizzaBase === 'Rossa' ? 'Pizzas à base de sauce tomate' : 'Pizzas sans sauce tomate' }</button>
     <ul>
-      <li key={allPizzas.id}>{allPizzas.name}</li>
+      {allPizzas.map(pizza => (
+        <li key={uuidv4()}>{pizza.name}</li>
+      ))}
     </ul>
   </main>
   </>
