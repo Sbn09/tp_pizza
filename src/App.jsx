@@ -1,12 +1,12 @@
 import "./App.css";
-import React from 'react';
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 
 function App() {
 
   const [pizzaBase, setpizzaBase] = useState('Rossa');
+  const [filteredPizzas, setfilteredPizzas] = useState([]);
   const allPizzas = [{
     id : 1,
     name : 'Margherita',
@@ -34,11 +34,17 @@ function App() {
     }
   }
 
+  useEffect(() => {
+    const filtered = allPizzas.filter(pizza => pizza.color === pizzaBase.toLowerCase());
+    setFilteredPizzas(filtered);
+  }, [pizzaBase, allPizzas]);
+
+
   return (
   <>
   <header>
     <a href="#"> <h1>Pizza Napoli</h1></a>
-    <img className="header-img" src="pizza.png"></img>
+    <img className="header-img" src="pizza.png"> </img>
   </header>
   <main>
     <h2> {pizzaBase === 'Rossa' ? 'Pizzas à base de sauce tomate' : 'Pizzas sans sauce tomate' } </h2>
