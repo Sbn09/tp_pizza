@@ -6,6 +6,23 @@ import { useState } from 'react';
 function App() {
 
   const [pizzaBase, setpizzaBase] = useState('Rossa');
+  const allPizzas = [{
+    id : 1,
+    name : 'Margherita',
+    color : 'rossa'
+  },
+  {
+    id : 2,
+    name : 'Marinara',
+    color : 'rossa'
+  },
+  {
+    id : 3,
+    name : 'Quattro Formaggi',
+    color : 'bianca'
+  }
+
+  ];
 
   function whenBaseButtonIsClicked () {
     console.log(pizzaBase);
@@ -24,7 +41,12 @@ function App() {
     <img className="header-img" src="pizza.png"></img>
   </header>
   <main>
-    <button onClick={whenBaseButtonIsClicked}>{pizzaBase}</button>
+    <h2> {pizzaBase === 'Rossa' ? 'Pizzas à base de sauce tomate' : 'Pizzas sans sauce tomate' } </h2>
+    <p> Affichez les pizzas</p>
+    <button onClick={whenBaseButtonIsClicked}>{pizzaBase === 'Rossa' ? 'Pizzas à base de sauce tomate' : 'Pizzas sans sauce tomate' }</button>
+    <ul>
+      <li key={allPizzas.id}>{allPizzas.name}</li>
+    </ul>
   </main>
   </>
   )
