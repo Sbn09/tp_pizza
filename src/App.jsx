@@ -6,7 +6,8 @@ import { v4 as uuidv4 } from 'uuid';
 function App() {
 
   const [pizzaBase, setpizzaBase] = useState('Rossa');
-  const [filteredPizzas, setfilteredPizzas] = useState([]);
+  const [filteredPizzas, setFilteredPizzas] = useState([]);
+  const [showAllPizzas, setShowAllPizzas] = useState(false);
   const allPizzas = [{
     id : 1,
     name : 'Margherita',
@@ -34,24 +35,31 @@ function App() {
     }
   }
 
-  useEffect(() => {
-    const filtered = allPizzas.filter(pizza => pizza.color === pizzaBase.toLowerCase());
-    setFilteredPizzas(filtered);
-  }, [pizzaBase, allPizzas]);
+  function showAllPizzasHandler() {
+    setShowAllPizzas((prevShowAll) => !prevShowAll);
+  }
 
+  useEffect(() => {
+    if (showAllPizzas) {
+      setFilteredPizzas(allPizzas);
+    } else {
+      const filtered = allPizzas.filter((pizza) => pizza.color === pizzaBase.toLowerCase());
+      setFilteredPizzas(filtered);
+    }
+  }, [pizzaBase, showAllPizzas]);
 
   return (
   <>
   <header>
     <a href="#"> <h1>Pizza Napoli</h1></a>
-    <img className="header-img" src="pizza.png"> </img>
+    <img className="header-img" src="pizza.png"></img>
   </header>
   <main>
     <h2> {pizzaBase === 'Rossa' ? 'Pizzas à base de sauce tomate' : 'Pizzas sans sauce tomate' } </h2>
-    <p> Affichez les pizzas</p>
+    <button onClick={showAllPizzasHandler}> Affichez les pizzas</button>
     <button onClick={whenBaseButtonIsClicked}>{pizzaBase === 'Rossa' ? 'Pizzas à base de sauce tomate' : 'Pizzas sans sauce tomate' }</button>
     <ul>
-      {allPizzas.map(pizza => (
+      {filteredPizzas.map(pizza => (
         <li key={uuidv4()}>{pizza.name}</li>
       ))}
     </ul>
